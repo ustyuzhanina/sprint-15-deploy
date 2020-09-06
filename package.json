@@ -1,0 +1,36 @@
+{
+  "name": "sprint-15-deploy",
+  "version": "0.0.1",
+  "description": "Generalized error handling and final deploy",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ustyuzhanina/sprint-15-deploy.git"
+  },
+  "author": "Elena Ustyuzhanina",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.0",
+    "mongoose": "^5.9.28",
+    "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "nodemon": "^2.0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/ustyuzhanina/sprint-15-deploy/issues"
+  },
+  "homepage": "https://github.com/ustyuzhanina/sprint-15-deploy#readme"
+}
