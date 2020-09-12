@@ -18,3 +18,4 @@ ES6, OOP, CSS3, HTML5, Node.js, BEM, MongoDB
 ## Launch instructions:
 - Open you browser and go to https://mesto-project.xyz or http://mesto-project.xyz, but https://mesto-project.xyz is much better, really. Safety, you know.
 - API is stored at a subdomain: http://api.mesto-project.xyz
+- Public IP - 84.201.165.203
