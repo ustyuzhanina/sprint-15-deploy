@@ -1,3 +1,4 @@
+const { ObjectID } = require('mongodb');
 const Card = require('../models/card');
 const NotFoundError = require('../errors/not-found-err');
 const PermissionError = require('../errors/permission-err');
@@ -24,13 +25,11 @@ module.exports.createCard = (req, res, next) => {
 };
 
 module.exports.deleteCard = (req, res, next) => {
-  Card.findById(req.params.cardId)
+  Card.findOne({ _id: new ObjectID(req.params.cardId) })
     .orFail()
-    .populate('owner', '_id')
     // eslint-disable-next-line consistent-return
     .then((card) => {
-      if (card.owner.id.toString() !== req.user._id) {
-        // return res.status(403).json({ message: 'Запрещено' });
+      if (card.owner.toString() !== req.user._id) {
         throw new PermissionError('Запрещено');
       }
       card.remove()
@@ -48,7 +47,6 @@ module.exports.likeCard = (req, res, next) => {
     // eslint-disable-next-line consistent-return
     .then((card) => {
       if (!card) {
-        // return res.status(404).send({ message: 'Карточка отсутствует в БД' });
         throw new NotFoundError('Карточка отсутствует в БД');
       }
       res.send({ data: card });

@@ -77,14 +77,16 @@ module.exports.login = (req, res, next) => {
           if (!matched) {
             return Promise.reject(new AuthorizationError('Неправильные почта или пароль'));
           }
+          const { NODE_ENV, JWT_SECRET } = process.env;
           const token = jwt.sign(
             { _id: user._id },
-            'some-secret-key',
+            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
             { expiresIn: '7d' },
           );
 
           res.cookie('jwt', token, {
-            maxAge: 3600 * 24 * 7,
+            maxAge: 3600 * 24 * 7 * 1000,
+            // expires: new Date(Date.now() + 3600 * 24 * 7),
             httpOnly: true,
             sameSite: true,
           });
