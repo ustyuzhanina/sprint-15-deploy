@@ -1,0 +1,14 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    // enable additional rules
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
+
+
+    // override default options for rules from base configurations
+
+
+    // disable rules from base configurations
+
+ }
+}
