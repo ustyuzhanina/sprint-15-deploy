@@ -1,6 +1,6 @@
 {
   "name": "sprint-15-deploy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generalized error handling and final deploy",
   "main": "app.js",
   "scripts": {

@@ -12,7 +12,6 @@ module.exports.getUsers = (req, res, next) => {
       if (users.length) {
         res.send(users);
       } else {
-        // res.status(404).send({ message: 'В базе данных еще нет ни одного пользователя' });
         throw new NotFoundError('В базе данных еще нет ни одного пользователя');
       }
     })
@@ -25,7 +24,6 @@ module.exports.getUserById = (req, res, next) => {
       if (user) {
         res.send(user);
       } else {
-        // res.status(404).send({ message: 'Нет пользователя с таким id' });
         throw new NotFoundError('Нет пользователя с таким id');
       }
     })
@@ -86,7 +84,6 @@ module.exports.login = (req, res, next) => {
 
           res.cookie('jwt', token, {
             maxAge: 3600 * 24 * 7 * 1000,
-            // expires: new Date(Date.now() + 3600 * 24 * 7),
             httpOnly: true,
             sameSite: true,
           });
