@@ -1,9 +1,9 @@
 # sprint-15-deploy
 
-Version 0.0.1
+Version 0.0.2
 
 ## About project:
-This is a demo-project accomplished to learn the basic steps of generalized app error handling and REST API deploy.
+This is a demo-project accomplished to learn the basic steps of generalized app error handling and REST API deploy to a server.
 
 <img src="./images/mesto-pic.jpg" alt="Mesto screenshot with numerous breathtaking pictures" width="600"/>
 

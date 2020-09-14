@@ -17,6 +17,7 @@ const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const BadRequestError = require('./errors/bad-request-err');
+const NotFoundError = require('./errors/not-found-err');
 
 // eslint-disable-next-line consistent-return
 const urlValidator = (link) => {
@@ -25,8 +26,6 @@ const urlValidator = (link) => {
   }
   return link;
 };
-
-// const { PORT = 3000 } = process.env;
 
 const app = express();
 
@@ -60,6 +59,7 @@ app.post('/signup', celebrate({
     password: Joi.string().required().min(8),
   }),
 }), createUser);
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -67,15 +67,10 @@ app.post('/signin', celebrate({
   }),
 }), login);
 
+app.use((req, res, next) => next(new NotFoundError('Запрашиваемый ресурс не найден')));
+
 app.use(errorLogger);
-
 app.use(errors());
-
 app.use(errorHandler);
-
-// app.listen(PORT, () => {
-//   // eslint-disable-next-line no-console
-//   console.log(`App listening at http://localhost:${PORT}`);
-// });
 
 module.exports = app;

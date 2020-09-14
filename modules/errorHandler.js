@@ -2,9 +2,6 @@
 const { AssertionError } = require('assert');
 const { MongoError } = require('mongodb');
 
-// const PermissionError = require('../errors/permission-err');
-// const UsedEmailError = require('../errors/used-email-err');
-
 // eslint-disable-next-line no-unused-vars
 module.exports.errorHandler = (error, req, res, next) => {
   if (error.name === 'DocumentNotFoundError') {
@@ -18,7 +15,14 @@ module.exports.errorHandler = (error, req, res, next) => {
     });
   }
 
-  if (error instanceof MongoError) {
+  if (error instanceof MongoError && error.code === 11000) {
+    return res.status(409).json({
+      type: 'MongoError',
+      message: 'Пользователь с таким адресом электронной почты уже существует',
+    });
+  }
+
+  if (error instanceof MongoError && error.code !== 11000) {
     return res.status(503).json({
       type: 'MongoError',
       message: error.message,
